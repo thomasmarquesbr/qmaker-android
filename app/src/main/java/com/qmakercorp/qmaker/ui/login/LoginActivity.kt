@@ -21,4 +21,6 @@ class LoginActivity : AppCompatActivity() {
         return findNavController(R.id.navHost).navigateUp()
     }
 
+
+
 }
