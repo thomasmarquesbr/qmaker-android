@@ -8,6 +8,7 @@ import com.qmakercorp.qmaker.R
 import com.qmakercorp.qmaker.helper.MODE
 import com.qmakercorp.qmaker.helper.Preferences
 import com.qmakercorp.qmaker.ui.login.LoginActivity
+import com.qmakercorp.qmaker.ui.reader.CodeReaderActivity
 
 
 class LaunchScreenActivity:
@@ -25,9 +26,10 @@ class LaunchScreenActivity:
     /** PUBLIC **/
 
     fun goToCodeReader(view: View?) {
-//        startActivity(Intent(this,
-//                CodeReaderActivity::class.java))
-//        finish()
+//        Preferences(this).saveMode(MODE.TEACHER)
+        startActivity(Intent(this,
+                CodeReaderActivity::class.java))
+        finish()
     }
 
     fun goToLogin(view: View?) {

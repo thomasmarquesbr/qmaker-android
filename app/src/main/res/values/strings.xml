@@ -27,4 +27,10 @@
     <string name="recovery_password_title">Recuperar senha</string>
     <string name="recovery_password_message">Digite o email para enviarmos o link de recuperação de senha</string>
     <string name="email_recovery_sended_successfull">Email de recuperação enviado com sucesso</string>
+    <string name="code_placeholder">Código</string>
+    <string name="or_type_code">ou digite o código</string>
+    <string name="scann_qrcode">Escaneie o QRCode</string>
+    <string name="send">Enviar</string>
+    <string name="caution">Atenção</string>
+    <string name="code_empty_message">Você deve ler um código QRCode ou digitar um código manualmente.</string>
 </resources>
