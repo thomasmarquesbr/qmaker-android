@@ -33,4 +33,9 @@
     <string name="send">Enviar</string>
     <string name="caution">Atenção</string>
     <string name="code_empty_message">Você deve ler um código QRCode ou digitar um código manualmente.</string>
+    <string name="new_quiz">Novo Quiz</string>
+    <string name="my_quizzes">Meus Quizzes</string>
+    <string name="summary">Resumo</string>
+    <string name="settings">Configurações</string>
+    <string name="empty_list_quizzes">Nenhum quiz disponível</string>
 </resources>

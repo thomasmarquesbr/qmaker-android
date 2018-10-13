@@ -62,7 +62,7 @@
         android:id="@+id/til_email"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:textColorHint="@color/lightGray"
         app:layout_constraintBottom_toTopOf="@+id/til_password"
         app:layout_constraintEnd_toEndOf="@+id/til_password"
@@ -72,8 +72,8 @@
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
             android:hint="@string/email_placeholder"
+            android:inputType="textEmailAddress"
             android:textColor="@android:color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 

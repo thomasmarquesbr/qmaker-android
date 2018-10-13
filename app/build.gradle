@@ -49,9 +49,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:16.0.4'
     implementation 'com.google.firebase:firebase-firestore:17.1.1'
     //ZXing
-//    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
-//    implementation 'com.google.android.gms:play-services:12.0.1'
     implementation 'com.google.android.gms:play-services-vision:16.2.0'
+    //FloatingButton
+    implementation 'com.github.aniketbhoite:MutativeFab:1.0.8'
 }
 
 apply plugin: 'com.google.gms.google-services'

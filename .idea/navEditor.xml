@@ -51,19 +51,61 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="newQuizFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="125" />
+                            <option name="y" value="246" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="tab1">
                     <value>
-                      <LayoutPositions />
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-112" />
+                            <option name="y" value="-45" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
                     </value>
                   </entry>
                   <entry key="tab2">
                     <value>
-                      <LayoutPositions />
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-114" />
+                            <option name="y" value="245" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_tab2_to_newQuizFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
                     </value>
                   </entry>
                   <entry key="tab3">
                     <value>
-                      <LayoutPositions />
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-115" />
+                            <option name="y" value="532" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
                     </value>
                   </entry>
                 </map>

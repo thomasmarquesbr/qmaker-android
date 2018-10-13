@@ -1,13 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.fragments.QuizzesFragment">
+    tools:context=".ui.main.fragments.tabs.QuizzesFragment">
 
     <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:layout_alignEnd="@+id/progress_bar"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_quizzes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Quizzes Fragment" />
+        android:visibility="gone"/>
 
-</FrameLayout>
+    <com.aniket.mutativefloatingactionbutton.MutativeFab
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        app:fabBackgroundColor="@color/colorAccent"
+        app:fabIcon="@drawable/ic_playlist_plus"
+        app:fabText="Quiz"
+        app:fabTextColor="@android:color/white"
+        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"/>
+
+
+</RelativeLayout>

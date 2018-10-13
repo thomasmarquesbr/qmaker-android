@@ -1,4 +1,4 @@
-package com.qmakercorp.qmaker.ui.main.fragments
+package com.qmakercorp.qmaker.ui.main.fragments.tabs
 
 
 import android.content.Intent

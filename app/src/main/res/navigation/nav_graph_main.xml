@@ -7,20 +7,33 @@
 
     <fragment
         android:id="@+id/tab1"
-        android:name="com.qmakercorp.qmaker.ui.main.fragments.HomeFragment"
+        android:name="com.qmakercorp.qmaker.ui.main.fragments.tabs.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/tab2"
-        android:name="com.qmakercorp.qmaker.ui.main.fragments.QuizzesFragment"
+        android:name="com.qmakercorp.qmaker.ui.main.fragments.tabs.QuizzesFragment"
         android:label="fragment_quizzes"
-        tools:layout="@layout/fragment_quizzes" />
+        tools:layout="@layout/fragment_quizzes" >
+        <action
+            android:id="@+id/action_tab2_to_newQuizFragment"
+            app:destination="@id/newQuizFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 
     <fragment
         android:id="@+id/tab3"
-        android:name="com.qmakercorp.qmaker.ui.main.fragments.SettingsFragment"
+        android:name="com.qmakercorp.qmaker.ui.main.fragments.tabs.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/newQuizFragment"
+        android:name="com.qmakercorp.qmaker.ui.main.fragments.quizzes.NewQuizFragment"
+        android:label="fragment_new_quiz"
+        tools:layout="@layout/fragment_new_quiz" />
 
 </navigation>

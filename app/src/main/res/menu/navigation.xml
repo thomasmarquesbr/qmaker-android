@@ -4,16 +4,16 @@
     <item
         android:id="@+id/tab1"
         android:icon="@drawable/ic_dashboard"
-        android:title="Resumo" />
+        android:title="@string/summary" />
 
     <item
         android:id="@+id/tab2"
         android:icon="@drawable/format_list_bulleted"
-        android:title="Questionários" />
+        android:title="@string/my_quizzes" />
 
     <item
         android:id="@+id/tab3"
         android:icon="@drawable/ic_settings"
-        android:title="Configurações" />
+        android:title="@string/settings" />
 
 </menu>
