@@ -19,4 +19,12 @@
     <string name="invalid_password">Senha inválida</string>
     <string name="error_password_confirmation">As senhas são diferentes</string>
     <string name="error_name">Nome inválido</string>
+    <string name="error_not_empty">Campo obrigatório</string>
+    <string name="error_password_short">Mínimo de 6 caracteres</string>
+    <string name="ok">Ok</string>
+    <string name="error_login">Atenção</string>
+    <string name="cancel">Cancelar</string>
+    <string name="recovery_password_title">Recuperar senha</string>
+    <string name="recovery_password_message">Digite o email para enviarmos o link de recuperação de senha</string>
+    <string name="email_recovery_sended_successfull">Email de recuperação enviado com sucesso</string>
 </resources>

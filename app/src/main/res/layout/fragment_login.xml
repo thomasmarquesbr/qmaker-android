@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.fragments.LoginFragment">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/button_login"
         style="@style/Widget.AppCompat.Button.Colored"
@@ -41,9 +52,11 @@
         android:text="@string/recovery_password"
         android:textColor="@android:color/white"
         android:textSize="14sp"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:focusable="true" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_email"
@@ -56,9 +69,10 @@
         app:layout_constraintStart_toStartOf="@+id/til_password">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/til_email"
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
             android:hint="@string/email_placeholder"
             android:textColor="@android:color/white" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -78,6 +92,7 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:hint="@string/password_placeholder"
             android:textColor="@android:color/white" />
     </com.google.android.material.textfield.TextInputLayout>

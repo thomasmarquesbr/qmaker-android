@@ -3,31 +3,36 @@ package com.qmakercorp.qmaker.helper
 import android.content.Context
 import androidx.core.content.edit
 
+enum class MODE {
+    NONE, TEACHER, STUDENT
+}
 
 class Preferences(val context: Context) {
 
     companion object {
-        private val PREF_KEY = "pref_key"
-        private val MODE = "mode"
+        private const val PREF_KEY = "pref_key"
+        private const val MODE_KEY = "mode_key"
     }
 
-    fun saveMode(context: Context, value: Boolean) {
+    fun mode() : MODE {
+        val value = context
+                .getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
+                .getString(MODE_KEY, MODE.NONE.name)
+        return MODE.valueOf(value ?: MODE.NONE.name)
+    }
+
+    fun saveMode(value: MODE) {
         val sharedPreferences = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
         sharedPreferences.edit {
-            putBoolean(MODE, value).apply()
+            putString(MODE_KEY, value.name).apply()
         }
     }
 
-    fun isTeacher(context: Context): Boolean {
-        return context
-                .getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
-                .getBoolean(MODE, false)
-    }
-
-    fun isStudent(context: Context): Boolean {
-        return !context
-                .getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
-                .getBoolean(MODE, false)
+    fun clearMode() {
+        val sharedPreferences = context.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE)
+        sharedPreferences.edit {
+            remove(MODE_KEY)
+        }
     }
 
 }

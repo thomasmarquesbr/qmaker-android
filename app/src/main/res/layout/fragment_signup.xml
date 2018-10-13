@@ -8,6 +8,16 @@
     android:background="@color/colorPrimary"
     tools:context=".ui.login.fragments.SignupFragment">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_name"
@@ -42,6 +52,7 @@
             android:layout_width="match_parent"
             android:textColor="@android:color/white"
             android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
             android:hint="@string/email_placeholder" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/til_email">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password"
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -95,4 +106,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_password_repeat" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
