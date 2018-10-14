@@ -29,6 +29,10 @@ class QuizzesDao {
         }
     }
 
+    fun removeQuiz(quiz: Quiz) {
+
+    }
+
     private fun quizzesMock(): MutableList<Quiz> {
         return mutableListOf(
                 Quiz("teste", "description", "LASEKA"),

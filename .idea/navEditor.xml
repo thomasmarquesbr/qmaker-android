@@ -56,8 +56,20 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="125" />
-                            <option name="y" value="246" />
+                            <option name="x" value="314" />
+                            <option name="y" value="124" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="quizFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="312" />
+                            <option name="y" value="416" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -68,8 +80,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-112" />
-                            <option name="y" value="-45" />
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -80,13 +92,18 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-114" />
-                            <option name="y" value="245" />
+                            <option name="x" value="12" />
+                            <option name="y" value="280" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
                             <entry key="action_tab2_to_newQuizFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_tab2_to_quizFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -101,8 +118,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-115" />
-                            <option name="y" value="532" />
+                            <option name="x" value="17" />
+                            <option name="y" value="565" />
                           </Point>
                         </option>
                       </LayoutPositions>

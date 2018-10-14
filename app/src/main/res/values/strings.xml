@@ -38,4 +38,10 @@
     <string name="summary">Resumo</string>
     <string name="settings">Configurações</string>
     <string name="empty_list_quizzes">Nenhum quiz disponível</string>
+    <string name="remove_quiz_alert_title">Remover Quiz</string>
+    <string name="remove_quiz_alert_message">Tem certeza que deseja remover? Essa operação não pode ser desfeita.</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="undo">Desfazer</string>
+    <string name="Delete">delete</string>
 </resources>

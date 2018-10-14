@@ -22,7 +22,14 @@
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_tab2_to_quizFragment"
+            app:destination="@id/quizFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -35,5 +42,10 @@
         android:name="com.qmakercorp.qmaker.ui.main.fragments.quizzes.NewQuizFragment"
         android:label="fragment_new_quiz"
         tools:layout="@layout/fragment_new_quiz" />
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.qmakercorp.qmaker.ui.main.fragments.quizzes.QuizFragment"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz" />
 
 </navigation>

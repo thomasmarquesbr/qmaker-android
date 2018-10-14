@@ -52,6 +52,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-vision:16.2.0'
     //FloatingButton
     implementation 'com.github.aniketbhoite:MutativeFab:1.0.8'
+
+    implementation 'com.nikhilpanju.recyclerviewenhanced:recyclerviewenhanced:1.1.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

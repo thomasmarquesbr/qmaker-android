@@ -47,6 +47,16 @@ class Alert(val context: Context,
                 .show()
     }
 
+    fun show(onClickYes: ()->Unit, onClickNo: ()->Unit) {
+        alertDialog
+                .setPositiveButton(R.string.yes) { _, _ ->
+                    onClickYes()
+                }.setNegativeButton(R.string.no) { _, _ ->
+                    onClickNo()
+                }.create()
+                .show()
+    }
+
     @SuppressLint("RestrictedApi")
     fun showWithEdittext(placeholder: String?, onPositiveClick: (EditText)->Unit, onNegativeClick: (EditText)->Unit) {
         val editText = EditText(context)
