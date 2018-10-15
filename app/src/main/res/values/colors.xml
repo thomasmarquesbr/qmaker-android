@@ -4,8 +4,10 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorPrimaryLight">#B2DFDB</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="lightGray">#bbffffff</color>
-
+    <color name="transparentWhite">#bbffffff</color>
+    <color name="white">#ffffff</color>
+    <color name="lightGray">#E0E0E0</color>
+    <color name="gray">#9E9E9E</color>
     <color name="swipeoption_green">#36CF8E</color>
     <color name="swipeoption_blue">#3693D0</color>
     <color name="swipeoption_purple">#ff1744</color>

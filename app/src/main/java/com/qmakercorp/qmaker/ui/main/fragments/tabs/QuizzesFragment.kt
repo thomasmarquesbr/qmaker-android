@@ -1,46 +1,43 @@
 package com.qmakercorp.qmaker.ui.main.fragments.tabs
 
+import android.app.Dialog
+import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.nikhilpanju.recyclerviewenhanced.OnActivityTouchListener
 import com.nikhilpanju.recyclerviewenhanced.RecyclerTouchListener
 import com.qmakercorp.qmaker.R
 import com.qmakercorp.qmaker.adapters.QuizzesListAdapter
 import com.qmakercorp.qmaker.components.Alert
 import com.qmakercorp.qmaker.data.dao.QuizzesDao
+import com.qmakercorp.qmaker.extensions.generateQRCode
 import kotlinx.android.synthetic.main.fragment_quizzes.*
+import kotlinx.android.synthetic.main.qrcode_layout.*
+import java.io.File
+import java.io.FileOutputStream
+import androidx.core.content.FileProvider
+import com.qmakercorp.qmaker.BuildConfig
+import com.qmakercorp.qmaker.data.model.Quiz
 
 
 class QuizzesFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerHelper {
 
     private lateinit var quizzesAdapter: QuizzesListAdapter
+    private lateinit var onTouchListener: RecyclerTouchListener
     private var touchListener: OnActivityTouchListener? = null
-    private val onTouchListener by lazy {
-        RecyclerTouchListener(activity, rv_quizzes)
-                .setClickable(object : RecyclerTouchListener.OnRowClickListener {
-                    override fun onRowClicked(position: Int) {
-                        didTapQuiz(position)
-                    }
-                    override fun onIndependentViewClicked(independentViewID: Int, position: Int) { }
-                }).setSwipeOptionViews(R.id.delete)
-                .setSwipeable(R.id.rowFG, R.id.rowBG) { viewID, position ->
-                    if (viewID == R.id.delete)
-                        context?.let {
-                            Alert(it, getString(R.string.remove_quiz_alert_title), getString(R.string.remove_quiz_alert_message))
-                                .show(onClickYes = {
-                                    removeItemList(position)
-                                }, onClickNo = {  })
-                        }
-                }
-    }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -107,12 +104,82 @@ class QuizzesFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerH
     }
 
     private fun initializeRecyclerView() {
-        context?.let {
+        context?.let {context ->
             setupAutoHideFabOnScrollList()
-            quizzesAdapter = QuizzesListAdapter(it, mutableListOf())
+            quizzesAdapter = QuizzesListAdapter(context, mutableListOf())
             rv_quizzes.adapter = quizzesAdapter
-            rv_quizzes.layoutManager = LinearLayoutManager(it, RecyclerView.VERTICAL, false)
+            rv_quizzes.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            onTouchListener = RecyclerTouchListener(activity, rv_quizzes)
+                    .setIndependentViews(R.id.button_qrcode)
+                    .setClickable(object : RecyclerTouchListener.OnRowClickListener {
+                        override fun onRowClicked(position: Int) {
+                            didTapQuiz(quizzesAdapter.quizzes[position])
+                        }
+                        override fun onIndependentViewClicked(independentViewID: Int, position: Int) {
+                            didTapQRCode(quizzesAdapter.quizzes[position], context)
+                        }
+                    }).setSwipeOptionViews(R.id.publish, R.id.delete)
+                    .setSwipeable(R.id.rowFG, R.id.rowBG) { viewID, position ->
+                        when (viewID) {
+                            R.id.publish -> onClickPublishRow(context, position)
+                            R.id.delete -> onClickDeleteRow(context, position)
+                        }
+                    }
         }
+    }
+
+    private fun didTapQRCode(quiz: Quiz, context: Context) {
+        val dialog = Dialog(context)
+        with(dialog) {
+            window?.requestFeature(Window.FEATURE_NO_TITLE)
+            setContentView(layoutInflater.inflate(R.layout.qrcode_layout, null))
+            iv_qrcode.setImageBitmap(BarcodeEncoder().generateQRCode(quiz.code))
+            ib_share.setOnClickListener {
+                dialog.dismiss()
+                shareQuiz(quiz, context)
+            }
+            button_close.setOnClickListener { dialog.dismiss() }
+            setCanceledOnTouchOutside(true)
+            show()
+        }
+
+    }
+
+    private fun shareQuiz(quiz: Quiz, context: Context) {
+        val bitmap = BarcodeEncoder().generateQRCode(quiz.code)
+        val cachePath = File(context.cacheDir, "images")
+        cachePath.mkdirs() // don't forget to make the directory
+        val stream = FileOutputStream(cachePath.toString() + "/image.png") // overwrites this image every time
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+        stream.close()
+        val imagePath = File(context.cacheDir, "images")
+        val newFile = File(imagePath, "image.png")
+        val contentUri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".fileprovider", newFile)
+        if (contentUri != null) {
+            val shareIntent = Intent()
+            shareIntent.action = Intent.ACTION_SEND
+            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) // temp permission for receiving app to read this file
+            shareIntent.setDataAndType(contentUri, context.contentResolver.getType(contentUri))
+            shareIntent.putExtra(Intent.EXTRA_TEXT, context.getString(R.string.text_share_quiz))
+            shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri)
+            shareIntent.type = "image/png"
+            startActivity(Intent.createChooser(shareIntent, context.getString(R.string.chose_app)))
+        }
+    }
+
+
+    private fun onClickPublishRow(context: Context, position: Int) {
+        QuizzesDao().publishQuiz(quizzesAdapter.quizzes[position]) {
+            val message = if (it) R.string.quiz_updated else R.string.error_update_quiz
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun onClickDeleteRow(context: Context, position: Int) {
+        Alert(context, getString(R.string.remove_quiz_alert_title), getString(R.string.remove_quiz_alert_message))
+                .show(onClickYes = {
+                    removeItemList(position)
+                }, onClickNo = { })
     }
 
     private fun setupAutoHideFabOnScrollList() {
@@ -130,8 +197,10 @@ class QuizzesFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerH
         })
     }
 
-    private fun didTapQuiz(position: Int) {
-        Toast.makeText(context, "Row " + (position + 1) + " clicked!", Toast.LENGTH_SHORT).show()
+    private fun didTapQuiz(quiz: Quiz) {
+        val bundle = Bundle()
+        bundle.putParcelable("quiz", quiz)
+        view?.findNavController()?.navigate(R.id.action_tab2_to_quizFragment, bundle)
     }
 
     private fun removeItemList(position: Int) {

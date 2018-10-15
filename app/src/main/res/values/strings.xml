@@ -44,4 +44,12 @@
     <string name="no">Não</string>
     <string name="undo">Desfazer</string>
     <string name="Delete">delete</string>
+    <string name="available">Disponível</string>
+    <string name="unavailable">Indisponível</string>
+    <string name="quiz_updated">Quiz atualizado</string>
+    <string name="error_update_quiz">Erro ao atualizar quiz</string>
+    <string name="close">Fechar</string>
+    <string name="share_your_quiz_dialog_title">Compartilhe o Quiz</string>
+    <string name="chose_app">Escolha um app</string>
+    <string name="text_share_quiz">Acesse e responda o quiz baixando o app no endereço e pelo app leia o QRCode ou digite o código</string>
 </resources>

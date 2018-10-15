@@ -55,7 +55,7 @@
         android:hint="@string/code_placeholder"
         android:textColor="@android:color/white"
         android:inputType="textPersonName"
-        android:textColorHint="@color/lightGray"
+        android:textColorHint="@color/transparentWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"

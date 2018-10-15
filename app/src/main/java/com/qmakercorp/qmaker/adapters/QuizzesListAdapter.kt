@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.qmakercorp.qmaker.R
@@ -27,6 +28,7 @@ class QuizzesListAdapter(private val context: Context,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val quiz = quizzes[position]
         holder.bindView(quiz)
+        holder.isAvailable = holder.hasDescription()
     }
 
     fun removeAt(position: Int) {
@@ -34,26 +36,35 @@ class QuizzesListAdapter(private val context: Context,
         notifyItemRemoved(position)
     }
 
-    fun restoreItem(quiz: Quiz, position: Int) {
-        quizzes.add(position, quiz)
-        notifyItemInserted(position)
-    }
-
-    private fun getLayoutInflater(): LayoutInflater {
-        return LayoutInflater.from(context)
-    }
-
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
+        private val title = itemView.mainText
+        private val description = itemView.subText
+        var isAvailable: Boolean = true
+            set(value) {
+                if (value) {
+                    itemView.publish.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.swipeoption_green))
+                    itemView.iv_publish.setBackgroundResource(R.drawable.checkbox_marked_circle_outline)
+                    itemView.tv_publish.text = itemView.context.getString(R.string.available)
+                    itemView.rowFG.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.white))
+                    itemView.button_qrcode.visibility = View.VISIBLE
+                } else {
+                    itemView.publish.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.gray))
+                    itemView.iv_publish.setBackgroundResource(R.drawable.checkbox_blank_circle_outline)
+                    itemView.tv_publish.text = itemView.context.getString(R.string.unavailable)
+                    itemView.rowFG.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.lightGray))
+                    itemView.button_qrcode.visibility = View.GONE
+                }
+                field = value
+            }
+
         fun bindView(quiz: Quiz) {
-//            val title = itemView.item_title
-//            val description = itemView.item_description
-
-            val title = itemView.mainText
-            val description = itemView.subText
-
             title.text = quiz.name
-            description.text = "${quiz.questions.size} perguntas"
+            description.text = quiz.code
+        }
+
+        fun hasDescription(): Boolean {
+            return !description.text.isEmpty()
         }
 
     }

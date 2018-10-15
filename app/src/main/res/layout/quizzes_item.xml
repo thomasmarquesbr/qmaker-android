@@ -56,45 +56,49 @@
             <!--</LinearLayout>-->
         <!--</RelativeLayout>-->
 
-        <!--<RelativeLayout-->
-            <!--android:id="@+id/edit"-->
-            <!--android:layout_width="@dimen/swipeWidth"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="@color/swipeoption_green"-->
-            <!--android:clickable="true"-->
-            <!--android:focusable="true"-->
-            <!--android:orientation="vertical">-->
+        <RelativeLayout
+            android:id="@+id/publish"
+            android:layout_width="@dimen/swipeWidth"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
 
-            <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_centerInParent="true"-->
-                <!--android:background="?android:selectableItemBackground"-->
-                <!--android:gravity="center"-->
-                <!--android:orientation="vertical">-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="?android:selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_gravity="center_horizontal"-->
-                    <!--android:src="@drawable/ic_mode_edit_black_24dp"-->
-                    <!--android:tint="@android:color/white"/>-->
+                <ImageView
+                    android:id="@+id/iv_publish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/checkbox_blank_circle_outline"
+                    android:tint="@color/white"/>
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_gravity="center_horizontal"-->
-                    <!--android:layout_marginLeft="8dp"-->
-                    <!--android:layout_marginRight="8dp"-->
-                    <!--android:layout_marginTop="4dp"-->
-                    <!--android:ellipsize="end"-->
-                    <!--android:gravity="center"-->
-                    <!--android:maxLines="1"-->
-                    <!--android:text="Edit"-->
-                    <!--android:textColor="@android:color/white"-->
-                    <!--android:textSize="12sp"/>-->
-            <!--</LinearLayout>-->
-        <!--</RelativeLayout>-->
+                <TextView
+                    android:id="@+id/tv_publish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="@string/unavailable"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/delete"
@@ -195,6 +199,17 @@
                 <!--android:layout_gravity="right|center_vertical"-->
                 <!--android:gravity="right|center_vertical"-->
                 <!--android:text="Button"/>-->
+
+            <ImageButton
+                android:id="@+id/button_qrcode"
+                style="?attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end|center_vertical"
+                android:src="@drawable/ic_qrcode"
+                />
+
         </LinearLayout>
 
     </LinearLayout>
