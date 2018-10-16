@@ -1,14 +1,16 @@
 package com.qmakercorp.qmaker.data.dao
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.qmakercorp.qmaker.data.model.Question
 import com.qmakercorp.qmaker.data.model.Quiz
 
 class QuizzesDao {
 
     private val database = FirebaseFirestore.getInstance()
 
-    fun getQuizzes(quizzesList: (MutableList<Quiz>)->Unit) {
+    fun getQuizzes(completion: (MutableList<Quiz>)->Unit) {
         FirebaseAuth.getInstance().currentUser?.let { user ->
             database.collection("users")
                     .document(user.uid)
@@ -20,10 +22,32 @@ class QuizzesDao {
                                 val quiz = documentSnapshot.toObject(Quiz::class.java)
                                 quiz?.let { it -> list.add(it) }
                             }
-                            quizzesList(list)
+                            completion(list)
                         } ?: run {
-                            quizzesList(mutableListOf())
+                            completion(mutableListOf())
                         }
+                    }
+        }
+    }
+
+    fun getQuestions(idQuiz: String, completion: (MutableList<Question>) -> Unit) {
+        FirebaseAuth.getInstance().currentUser?.let { user ->
+            database.collection("users")
+                    .document(user.uid)
+                    .collection("quizzes")
+                    .document(idQuiz)
+                    .collection("questions")
+                    .orderBy("order")
+                    .get()
+                    .addOnSuccessListener { querySnapshot ->
+                        val list = mutableListOf<Question>()
+                        querySnapshot.documents.forEach { document ->
+                            val question = document.toObject(Question::class.java)
+                            question?.let { list.add(it) }
+                        }
+                        completion(list)
+                    }.addOnFailureListener {
+                        completion(mutableListOf())
                     }
         }
     }

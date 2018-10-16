@@ -69,10 +69,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun didTapSignup(view: View) {
-        val args = Bundle().apply {
-            putParcelable("student", Student("thomas", 28))
-        }
-        view.findNavController().navigate(R.id.action_loginFragment_to_signupFragment, args)
+        view.findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
     }
 
     private fun didTapRecoveryPassword() {

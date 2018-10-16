@@ -31,8 +31,6 @@ class SignupFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeViews()
-        val student: Student? = arguments?.getParcelable("student")
-//        text_view.text = "${student?.name}  ${student?.age}"
     }
 
     /** PRIVATE **/

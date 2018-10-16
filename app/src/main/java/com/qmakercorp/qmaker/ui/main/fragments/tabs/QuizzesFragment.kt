@@ -19,7 +19,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.nikhilpanju.recyclerviewenhanced.OnActivityTouchListener
 import com.nikhilpanju.recyclerviewenhanced.RecyclerTouchListener
 import com.qmakercorp.qmaker.R
-import com.qmakercorp.qmaker.adapters.QuizzesListAdapter
+import com.qmakercorp.qmaker.adapters.QuestionsListAdapter
 import com.qmakercorp.qmaker.components.Alert
 import com.qmakercorp.qmaker.data.dao.QuizzesDao
 import com.qmakercorp.qmaker.extensions.generateQRCode
@@ -29,6 +29,7 @@ import java.io.File
 import java.io.FileOutputStream
 import androidx.core.content.FileProvider
 import com.qmakercorp.qmaker.BuildConfig
+import com.qmakercorp.qmaker.adapters.QuizzesListAdapter
 import com.qmakercorp.qmaker.data.model.Quiz
 
 
@@ -37,7 +38,6 @@ class QuizzesFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerH
     private lateinit var quizzesAdapter: QuizzesListAdapter
     private lateinit var onTouchListener: RecyclerTouchListener
     private var touchListener: OnActivityTouchListener? = null
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -71,6 +71,8 @@ class QuizzesFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerH
     override fun setOnActivityTouchListener(listener: OnActivityTouchListener?) {
         this.touchListener = listener
     }
+
+    /** PRIVATE **/
 
     private fun showInfo(resIdMessage: Int) {
         progress_bar.visibility = View.GONE
@@ -204,7 +206,7 @@ class QuizzesFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerH
     }
 
     private fun removeItemList(position: Int) {
-        val adapter = rv_quizzes.adapter as QuizzesListAdapter
+        val adapter = rv_quizzes.adapter as QuestionsListAdapter
         val quiz = quizzesAdapter.quizzes[position]
         QuizzesDao().removeQuiz(quiz)
         adapter.removeAt(position)

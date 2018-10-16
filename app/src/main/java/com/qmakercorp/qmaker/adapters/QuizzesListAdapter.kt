@@ -14,18 +14,18 @@ import kotlinx.android.synthetic.main.quizzes_item.view.*
 
 class QuizzesListAdapter(private val context: Context,
                          var quizzes: MutableList<Quiz>):
-        Adapter<QuizzesListAdapter.ViewHolder>() {
+        Adapter<QuizzesListAdapter.QuizzesViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuizzesViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.quizzes_item, parent, false)
-        return ViewHolder(view)
+        return QuizzesViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return quizzes.count()
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: QuizzesViewHolder, position: Int) {
         val quiz = quizzes[position]
         holder.bindView(quiz)
         holder.isAvailable = holder.hasDescription()
@@ -36,7 +36,7 @@ class QuizzesListAdapter(private val context: Context,
         notifyItemRemoved(position)
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class QuizzesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         private val title = itemView.mainText
         private val description = itemView.subText

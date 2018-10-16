@@ -57,8 +57,7 @@ dependencies {
     //SwipeActions
     implementation 'com.nikhilpanju.recyclerviewenhanced:recyclerviewenhanced:1.1.0'
     //ExpandableRecyclerView
-    implementation 'com.thoughtbot:expandablerecyclerview:1.3'
-//    compile 'com.thoughtbot:expandablecheckrecyclerview:1.4'
+
 }
 
 apply plugin: 'com.google.gms.google-services'
