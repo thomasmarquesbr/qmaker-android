@@ -52,4 +52,5 @@
     <string name="share_your_quiz_dialog_title">Compartilhe o Quiz</string>
     <string name="chose_app">Escolha um app</string>
     <string name="text_share_quiz">Acesse e responda o quiz baixando o app no endereço e pelo app leia o QRCode ou digite o código</string>
+    <string name="answer">Resposta</string>
 </resources>

@@ -23,8 +23,6 @@ class QuizzesDao {
                                 quiz?.let { it -> list.add(it) }
                             }
                             completion(list)
-                        } ?: run {
-                            completion(mutableListOf())
                         }
                     }
         }
@@ -46,8 +44,6 @@ class QuizzesDao {
                             question?.let { list.add(it) }
                         }
                         completion(list)
-                    }.addOnFailureListener {
-                        completion(mutableListOf())
                     }
         }
     }

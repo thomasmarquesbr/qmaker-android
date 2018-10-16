@@ -9,6 +9,8 @@ import com.qmakercorp.qmaker.helper.MODE
 import com.qmakercorp.qmaker.helper.Preferences
 import com.qmakercorp.qmaker.ui.login.LoginActivity
 import com.qmakercorp.qmaker.ui.reader.CodeReaderActivity
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 
 class LaunchScreenActivity:
@@ -21,6 +23,7 @@ class LaunchScreenActivity:
             MODE.STUDENT -> goToCodeReader(null)
             MODE.NONE -> setContentView(R.layout.activity_launch_screen)
         }
+        Fabric.with(this, Crashlytics())
     }
 
     /** PUBLIC **/

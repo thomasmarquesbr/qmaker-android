@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.qmakercorp.qmaker">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -42,6 +43,9 @@
             android:name=".ui.login.LoginActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".ui.reader.CodeReaderActivity"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="a77ec1f97699b58668e38bc2d83ba73e2488feca" />
     </application>
 
 </manifest>
