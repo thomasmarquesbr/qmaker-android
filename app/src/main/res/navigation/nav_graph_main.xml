@@ -46,6 +46,19 @@
         android:id="@+id/quizFragment"
         android:name="com.qmakercorp.qmaker.ui.main.fragments.quizzes.QuizFragment"
         android:label="fragment_quiz"
-        tools:layout="@layout/fragment_quiz" />
+        tools:layout="@layout/fragment_quiz" >
+        <action
+            android:id="@+id/action_quizFragment_to_questionFragment"
+            app:destination="@id/questionFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.qmakercorp.qmaker.ui.main.fragments.quizzes.QuestionFragment"
+        android:label="fragment_question"
+        tools:layout="@layout/fragment_question" />
 
 </navigation>

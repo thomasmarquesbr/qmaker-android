@@ -37,11 +37,11 @@ class QuestionsListAdapter(private val context: Context,
     class QuestionsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
 //        private val title = itemView.mainText
-        private val description = itemView.mainText
+//        private val description = itemView.mainText
 
         fun bindView(question: Question) {
 //            title.text = question.order.toString()
-            description.text = question.description
+            itemView.mainText.text = question.description
         }
 
     }
