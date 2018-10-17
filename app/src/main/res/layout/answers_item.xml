@@ -190,6 +190,14 @@
 
             </LinearLayout>
 
+            <ImageView
+                android:id="@+id/handle"
+                android:layout_width="?listPreferredItemHeight"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|end"
+                android:scaleType="center"
+                android:src="@drawable/reorder_horizontal" />
+
             <!--<Button-->
             <!--android:id="@+id/rowButton"-->
             <!--style="?attr/buttonBarButtonStyle"-->
