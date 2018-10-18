@@ -101,45 +101,44 @@
         <!--</RelativeLayout>-->
 
         <!--<RelativeLayout-->
-        <!--android:id="@+id/delete"-->
-        <!--android:layout_width="@dimen/swipeWidth"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:background="@color/swipeoption_purple"-->
-        <!--android:layout_gravity="end"-->
-        <!--android:clickable="true"-->
-        <!--android:focusable="true"-->
-        <!--android:orientation="vertical">-->
+            <!--android:id="@+id/delete"-->
+            <!--android:layout_width="@dimen/swipeWidth"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/swipeoption_purple"-->
+            <!--android:layout_gravity="end"-->
+            <!--android:clickable="true"-->
+            <!--android:focusable="true"-->
+            <!--android:orientation="vertical">-->
 
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:background="?android:selectableItemBackground"-->
-        <!--android:gravity="center_vertical|left"-->
-        <!--android:orientation="vertical">-->
-
-        <!--<ImageView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_horizontal"-->
-
-        <!--android:src="@drawable/ic_delete"-->
-        <!--android:contentDescription="TODO" />-->
-
-        <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:layout_marginTop="4dp"-->
-        <!--android:ellipsize="end"-->
-        <!--android:gravity="center"-->
-        <!--android:maxLines="1"-->
-        <!--android:text="@string/Delete"-->
-        <!--android:textColor="@android:color/white"-->
-        <!--android:textSize="18sp"/>-->
-        <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:background="?android:selectableItemBackground"-->
+                <!--android:gravity="center_vertical|left"-->
+                <!--android:orientation="vertical">-->
+    <!---->
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:src="@drawable/ic_delete"-->
+                <!--android:contentDescription="TODO" />-->
+    <!---->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:layout_marginRight="8dp"-->
+                <!--android:layout_marginTop="4dp"-->
+                <!--android:ellipsize="end"-->
+                <!--android:gravity="center"-->
+                <!--android:maxLines="1"-->
+                <!--android:text="@string/Delete"-->
+                <!--android:textColor="@android:color/white"-->
+                <!--android:textSize="18sp"/>-->
+            <!--</LinearLayout>-->
         <!--</RelativeLayout>-->
     </LinearLayout>
 
@@ -186,6 +185,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:textSize="18sp"
+                    tools:text="Some text ..."/>
+
+                <TextView
+                    android:id="@+id/subText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/swipeoption_purple"
                     tools:text="Some text ..."/>
 
             </LinearLayout>

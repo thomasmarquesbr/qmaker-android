@@ -53,4 +53,12 @@
     <string name="chose_app">Escolha um app</string>
     <string name="text_share_quiz">Acesse e responda o quiz baixando o app no endereço e pelo app leia o QRCode ou digite o código</string>
     <string name="answer">Resposta</string>
+    <string name="isTrue">Verdadeira</string>
+    <string name="isFalse">Falsa</string>
+    <string name="confirm">Confirmar</string>
+    <string name="add">Adicionar</string>
+    <string name="type_a_answer">Digite uma resposta</string>
+    <string name="save">Salvar</string>
+    <string name="answers_save_successful">Respostas salvas</string>
+    <string name="error_empty_answers">A pergunta deve ter pelo menos 2 respostas</string>
 </resources>

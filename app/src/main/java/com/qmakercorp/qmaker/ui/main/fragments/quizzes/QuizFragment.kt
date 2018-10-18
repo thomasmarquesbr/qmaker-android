@@ -87,7 +87,6 @@ class QuizFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerHelp
                         override fun onRowClicked(position: Int) {
                             didTapQuestion(adapter.questions[position])
                         }
-
                         override fun onIndependentViewClicked(independentViewID: Int, position: Int) {}
                     })
         }

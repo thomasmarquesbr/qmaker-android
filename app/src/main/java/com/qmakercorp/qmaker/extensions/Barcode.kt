@@ -1,6 +1,7 @@
 package com.qmakercorp.qmaker.extensions
 
 import android.graphics.Bitmap
+import androidx.recyclerview.widget.RecyclerView
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
