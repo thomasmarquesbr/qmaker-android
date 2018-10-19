@@ -1,34 +1,41 @@
 package com.qmakercorp.qmaker.ui.main.fragments.quizzes
 
 
+import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.nikhilpanju.recyclerviewenhanced.OnActivityTouchListener
-import com.nikhilpanju.recyclerviewenhanced.RecyclerTouchListener
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.FirebaseFirestore
 
 import com.qmakercorp.qmaker.R
 import com.qmakercorp.qmaker.adapters.QuestionsListAdapter
+import com.qmakercorp.qmaker.components.Alert
+import com.qmakercorp.qmaker.components.OnStartDragListener
+import com.qmakercorp.qmaker.components.SimpleItemTouchHelperCallback
+import com.qmakercorp.qmaker.data.dao.QuizDao
 import com.qmakercorp.qmaker.data.dao.QuizzesDao
 import com.qmakercorp.qmaker.data.model.Question
 import com.qmakercorp.qmaker.data.model.Quiz
 import kotlinx.android.synthetic.main.fragment_quiz.*
+import kotlinx.android.synthetic.main.new_question_dialog.*
 
 
-class QuizFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerHelper {
+class QuizFragment : Fragment(), OnStartDragListener {
 
     private var quiz: Quiz? = null
     private lateinit var adapter: QuestionsListAdapter
-    private lateinit var onTouchListener: RecyclerTouchListener
-    private var touchListener: OnActivityTouchListener? = null
+    private var questions = mutableListOf<Question>()
+    private var mItemTouchHelper: ItemTouchHelper? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -43,27 +50,12 @@ class QuizFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerHelp
 
     override fun onResume() {
         super.onResume()
-        quiz?.let {
-            startLoading()
-            QuizzesDao().getQuestions(it.id) {
-                stopLoading()
-                if (it.size > 0) {
-                    adapter.questions = it
-                    adapter.notifyDataSetChanged()
-                } else
-                    showInfo(R.string.empty_list_quizzes)
-            }
-            rv_questions.addOnItemTouchListener(onTouchListener)
-        }
+        getQuestions()
     }
 
-    override fun onPause() {
-        super.onPause()
-        rv_questions.removeOnItemTouchListener(onTouchListener)
-    }
-
-    override fun setOnActivityTouchListener(listener: OnActivityTouchListener?) {
-        this.touchListener = listener
+    override fun onStartDrag(viewHolder: RecyclerView.ViewHolder) {
+        viewHolder.let { mItemTouchHelper?.startDrag(it) }
+        questions = adapter.questions.toMutableList()
     }
 
     /** PRIVATE **/
@@ -74,20 +66,56 @@ class QuizFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerHelp
             it.setHomeButtonEnabled(true)
             it.title = getString(R.string.new_quiz)
         }
-        initializeRecyclerView()
+        setupAutoHideFabOnScrollList()
+        context?.let { context ->
+            fab.setOnClickListener { didTapNewAnswer(context) }
+            initializeRecyclerView(context)
+        }
     }
 
-    private fun initializeRecyclerView() {
+    private fun setupAutoHideFabOnScrollList() {
+        rv_questions.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0 || dy < 0)
+                    fab.fabTextVisibility = View.GONE
+            }
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE)
+                    fab.fabTextVisibility = View.VISIBLE
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+        })
+    }
+
+    private fun initializeRecyclerView(context: Context) {
+        adapter = QuestionsListAdapter(context,
+                mutableListOf(),
+                this,
+                onclick =  { position ->
+                    didTapQuestion(adapter.questions[position])
+                }, onRemoved = { position ->
+                    onRemoved(position)
+                })
+        rv_questions.adapter = adapter
+        rv_questions.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        val callback = SimpleItemTouchHelperCallback(adapter)
+        mItemTouchHelper = ItemTouchHelper(callback)
+        mItemTouchHelper?.attachToRecyclerView(rv_questions)
+    }
+
+    private fun onRemoved(position: Int) {
         context?.let { context ->
-            adapter = QuestionsListAdapter(context, mutableListOf())
-            rv_questions.adapter = adapter
-            rv_questions.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-            onTouchListener = RecyclerTouchListener(activity, rv_questions)
-                    .setClickable(object : RecyclerTouchListener.OnRowClickListener {
-                        override fun onRowClicked(position: Int) {
-                            didTapQuestion(adapter.questions[position])
+            Alert(context, getString(R.string.alert_remove_question))
+                    .show(onClickYes = {
+                        quiz?.let { quiz ->
+                            QuizDao().removeQuestion(quiz, questions[position]) { error ->
+                                val message = error ?: getString(R.string.question_removed)
+                                view?.let { Snackbar.make(it, message, Snackbar.LENGTH_LONG).show() }
+                            }
                         }
-                        override fun onIndependentViewClicked(independentViewID: Int, position: Int) {}
+                    }, onClickNo = {
+                        getQuestions()
                     })
         }
     }
@@ -110,6 +138,21 @@ class QuizFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerHelp
         rv_questions.visibility = View.VISIBLE
     }
 
+    private fun getQuestions() {
+        quiz?.let { quiz->
+            startLoading()
+            QuizzesDao().getQuestions(quiz.id) {
+                stopLoading()
+                if (it.size > 0) {
+                    questions = it.toMutableList()
+                    adapter.questions = it
+                    adapter.notifyDataSetChanged()
+                } else
+                    showInfo(R.string.empty_list_quizzes)
+            }
+        }
+    }
+
     private fun didTapQuestion(question: Question) {
         quiz?.let {
             val bundle = Bundle()
@@ -117,7 +160,25 @@ class QuizFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerHelp
             bundle.putParcelable("question", question)
             view?.findNavController()?.navigate(R.id.action_quizFragment_to_questionFragment, bundle)
         }
+    }
 
+    private fun didTapNewAnswer(context: Context) {
+        val dialog = Dialog(context)
+        with(dialog) {
+            setContentView(R.layout.new_question_dialog)
+            button_cancel.setOnClickListener { dialog.dismiss() }
+            button_add.setText(R.string.save)
+            button_add.setOnClickListener {
+                val description = et_question.text.toString()
+                val question = Question(QuizDao().generateId(),
+                        description,
+                        adapter.questions.size)
+                dialog.dismiss()
+                if (!description.isEmpty())
+                    didTapQuestion(question)
+            }
+            show()
+        }
     }
 
 }

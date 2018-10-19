@@ -61,4 +61,8 @@
     <string name="save">Salvar</string>
     <string name="answers_save_successful">Respostas salvas</string>
     <string name="error_empty_answers">A pergunta deve ter pelo menos 2 respostas</string>
+    <string name="alert_remove_question">Tem certeza que deseja remover a pergunta?\nEsta operação não pode ser desfeita.</string>
+    <string name="question_removed">Pergunta removida</string>
+    <string name="question">Pergunta</string>
+    <string name="type_a_question">Digite uma pergunta</string>
 </resources>

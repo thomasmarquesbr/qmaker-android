@@ -2,7 +2,6 @@ package com.qmakercorp.qmaker.data.dao
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.qmakercorp.qmaker.R
 import com.qmakercorp.qmaker.data.model.Answer
 import com.qmakercorp.qmaker.data.model.Question
 import com.qmakercorp.qmaker.data.model.Quiz
@@ -34,6 +33,24 @@ class QuizDao {
                     .addOnSuccessListener { result(null) }
                     .addOnFailureListener { result(it.localizedMessage) }
         }
+    }
+
+    fun removeQuestion(quiz: Quiz, question: Question, result: (String?) -> Unit) {
+        FirebaseAuth.getInstance().currentUser?.let { user ->
+            database.collection("users")
+                    .document(user.uid)
+                    .collection("quizzes")
+                    .document(quiz.id)
+                    .collection("questions")
+                    .document(question.id)
+                    .delete()
+                    .addOnSuccessListener { result(null) }
+                    .addOnFailureListener { result(it.localizedMessage) }
+        }
+    }
+
+    fun generateId(): String {
+        return FirebaseFirestore.getInstance().collection("users").document().id
     }
 
 }

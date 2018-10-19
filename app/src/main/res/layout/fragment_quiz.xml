@@ -25,9 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
         style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
         android:visibility="gone"
         />
@@ -37,6 +35,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"/>
+
+    <com.aniket.mutativefloatingactionbutton.MutativeFab
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        app:fabBackgroundColor="@color/colorAccent"
+        app:fabIcon="@drawable/ic_playlist_plus"
+        app:fabText="@string/question"
+        app:fabTextColor="@android:color/white"
+        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"/>
 
 
 </RelativeLayout>

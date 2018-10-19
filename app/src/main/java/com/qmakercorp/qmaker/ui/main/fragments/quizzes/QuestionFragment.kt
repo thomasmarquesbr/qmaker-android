@@ -169,8 +169,4 @@ class QuestionFragment :
         }
     }
 
-
-
-
-
 }

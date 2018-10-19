@@ -159,8 +159,15 @@
             android:background="?attr/selectableItemBackground"
             android:orientation="horizontal"
             android:paddingBottom="16dp"
-            android:paddingLeft="16dp"
             android:paddingTop="16dp">
+
+            <ImageView
+                android:id="@+id/handle"
+                android:layout_width="?listPreferredItemHeight"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|start"
+                android:scaleType="center"
+                android:src="@drawable/reorder_horizontal" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -188,6 +195,8 @@
                     tools:text="Some text ..."/>
 
             </LinearLayout>
+
+
 
             <!--<Button-->
             <!--android:id="@+id/rowButton"-->
