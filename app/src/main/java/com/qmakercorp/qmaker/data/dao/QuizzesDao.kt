@@ -31,14 +31,24 @@ class QuizzesDao {
 
     fun publishQuiz(quiz: Quiz, completion: (Boolean)->Unit) {
         FirebaseAuth.getInstance().currentUser?.let {user ->
-            val code = if (quiz.code.isEmpty())
-                quiz.id.subSequence(0, 6).toString().toUpperCase()
-            else ""
-            database.collection("users")
+            val quizRef = database.collection("users")
                     .document(user.uid)
                     .collection("quizzes")
                     .document(quiz.id)
-                    .update("code", code)
+            val publicQuizzesRef = database.collection("publicQuizzes")
+                    .document(quiz.id)
+            val batch = database.batch()
+            if (quiz.code.isEmpty()) { // publish
+                val code = quiz.id.subSequence(0, 6).toString().toUpperCase()
+                batch.update(quizRef, "code", code)
+                val data = mapOf("code" to code)
+                batch.set(publicQuizzesRef, data)
+                batch.update(publicQuizzesRef, "code", code)
+            } else { // unpublish
+                batch.update(quizRef, "code", "")
+                batch.delete(publicQuizzesRef)
+            }
+            batch.commit()
                     .addOnSuccessListener { completion(true) }
                     .addOnFailureListener { completion(false) }
         }

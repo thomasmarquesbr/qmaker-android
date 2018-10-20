@@ -194,9 +194,9 @@ class QuizzesFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerH
 
 
     private fun onClickPublishRow(context: Context, position: Int) {
-        QuizzesDao().publishQuiz(quizzesAdapter.quizzes[position]) {
-            val message = if (it) R.string.quiz_updated else R.string.error_update_quiz
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        QuizzesDao().publishQuiz(quizzesAdapter.quizzes[position]) { result ->
+            val message = if (result) R.string.quiz_updated else R.string.error_update_quiz
+            view?.let { Snackbar.make(it, message, Snackbar.LENGTH_LONG).show() }
         }
     }
 
