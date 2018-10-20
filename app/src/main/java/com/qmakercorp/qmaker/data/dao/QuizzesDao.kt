@@ -15,6 +15,7 @@ class QuizzesDao {
             database.collection("users")
                     .document(user.uid)
                     .collection("quizzes")
+                    .orderBy("name")
                     .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                         querySnapshot?.let {
                             val list = mutableListOf<Quiz>()
@@ -24,26 +25,6 @@ class QuizzesDao {
                             }
                             completion(list)
                         }
-                    }
-        }
-    }
-
-    fun getQuestions(idQuiz: String, completion: (MutableList<Question>) -> Unit) {
-        FirebaseAuth.getInstance().currentUser?.let { user ->
-            database.collection("users")
-                    .document(user.uid)
-                    .collection("quizzes")
-                    .document(idQuiz)
-                    .collection("questions")
-                    .orderBy("order")
-                    .get()
-                    .addOnSuccessListener { querySnapshot ->
-                        val list = mutableListOf<Question>()
-                        querySnapshot.documents.forEach { document ->
-                            val question = document.toObject(Question::class.java)
-                            question?.let { list.add(it) }
-                        }
-                        completion(list)
                     }
         }
     }
@@ -63,8 +44,29 @@ class QuizzesDao {
         }
     }
 
-    fun removeQuiz(quiz: Quiz) {
+    fun saveQuiz(quiz: Quiz, result: (Boolean) -> Unit) {
+        FirebaseAuth.getInstance().currentUser?.let { user ->
+            database.collection("users")
+                    .document(user.uid)
+                    .collection("quizzes")
+                    .document(quiz.id)
+                    .set(quiz.toMap())
+                    .addOnSuccessListener { result(true) }
+                    .addOnFailureListener { result(false) }
+        }
+    }
 
+    fun removeQuiz(quiz: Quiz, result: (Boolean) -> Unit) {
+        FirebaseAuth.getInstance().currentUser?.let { user ->
+            Log.e("TESTE", quiz.id)
+            database.collection("users")
+                    .document(user.uid)
+                    .collection("quizzes")
+                    .document(quiz.id)
+                    .delete()
+                    .addOnSuccessListener { result(true) }
+                    .addOnFailureListener { result(false) }
+        }
     }
 
     private fun quizzesMock(): MutableList<Quiz> {

@@ -23,7 +23,8 @@ class QuestionsListAdapter(private val context: Context,
                            var questions: MutableList<Question>,
                            private val mDragStartListener: OnStartDragListener,
                            val onclick: (Int) -> Unit,
-                           val onRemoved: (Int) -> Unit):
+                           val onRemoved: (Int) -> Unit,
+                           val onItemMoved: () ->Unit):
         Adapter<QuestionsListAdapter.QuestionsViewHolder>(), ItemTouchHelperAdapter {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionsViewHolder {
@@ -50,6 +51,7 @@ class QuestionsListAdapter(private val context: Context,
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
         Collections.swap(questions, fromPosition, toPosition)
         notifyItemMoved(fromPosition, toPosition)
+        onItemMoved()
         return true
     }
 

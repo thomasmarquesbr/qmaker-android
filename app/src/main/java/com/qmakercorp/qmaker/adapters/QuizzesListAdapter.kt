@@ -43,15 +43,15 @@ class QuizzesListAdapter(private val context: Context,
         var isAvailable: Boolean = true
             set(value) {
                 if (value) {
-                    itemView.publish.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.swipeoption_green))
-                    itemView.iv_publish.setBackgroundResource(R.drawable.checkbox_marked_circle_outline)
-                    itemView.tv_publish.text = itemView.context.getString(R.string.available)
+                    itemView.publish.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.gray))
+                    itemView.iv_publish.setBackgroundResource(R.drawable.checkbox_blank_circle_outline)
+                    itemView.tv_publish.text = itemView.context.getString(R.string.unpublish)
                     itemView.rowFG.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.white))
                     itemView.button_qrcode.visibility = View.VISIBLE
                 } else {
-                    itemView.publish.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.gray))
-                    itemView.iv_publish.setBackgroundResource(R.drawable.checkbox_blank_circle_outline)
-                    itemView.tv_publish.text = itemView.context.getString(R.string.unavailable)
+                    itemView.publish.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.swipeoption_green))
+                    itemView.iv_publish.setBackgroundResource(R.drawable.checkbox_marked_circle_outline)
+                    itemView.tv_publish.text = itemView.context.getString(R.string.publish)
                     itemView.rowFG.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.lightGray))
                     itemView.button_qrcode.visibility = View.GONE
                 }

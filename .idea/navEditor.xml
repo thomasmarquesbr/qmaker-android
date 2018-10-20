@@ -51,25 +51,13 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="newQuizFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="314" />
-                            <option name="y" value="124" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
                   <entry key="questionFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="597" />
-                            <option name="y" value="276" />
+                            <option name="x" value="501" />
+                            <option name="y" value="279" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -80,8 +68,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="312" />
-                            <option name="y" value="416" />
+                            <option name="x" value="264" />
+                            <option name="y" value="279" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -119,11 +107,6 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_tab2_to_newQuizFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
                             <entry key="action_tab2_to_quizFragment">
                               <value>
                                 <LayoutPositions />

@@ -9,8 +9,14 @@ data class Quiz(var id: String,
                 var name: String,
                 var code: String) : Parcelable {
 
-    var questions = mutableListOf<Question>()
-
     constructor() : this("", "", "")
+
+    fun toMap() : Map<String, Any> {
+        val map = mutableMapOf<String, Any>()
+        map["id"] = id
+        map["name"] = name
+        map["code"] = code
+        return map
+    }
 
 }

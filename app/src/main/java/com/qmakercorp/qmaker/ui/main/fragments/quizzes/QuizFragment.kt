@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.firestore.FirebaseFirestore
 
 import com.qmakercorp.qmaker.R
 import com.qmakercorp.qmaker.adapters.QuestionsListAdapter
@@ -23,7 +22,6 @@ import com.qmakercorp.qmaker.components.Alert
 import com.qmakercorp.qmaker.components.OnStartDragListener
 import com.qmakercorp.qmaker.components.SimpleItemTouchHelperCallback
 import com.qmakercorp.qmaker.data.dao.QuizDao
-import com.qmakercorp.qmaker.data.dao.QuizzesDao
 import com.qmakercorp.qmaker.data.model.Question
 import com.qmakercorp.qmaker.data.model.Quiz
 import kotlinx.android.synthetic.main.fragment_quiz.*
@@ -55,7 +53,6 @@ class QuizFragment : Fragment(), OnStartDragListener {
 
     override fun onStartDrag(viewHolder: RecyclerView.ViewHolder) {
         viewHolder.let { mItemTouchHelper?.startDrag(it) }
-        questions = adapter.questions.toMutableList()
     }
 
     /** PRIVATE **/
@@ -96,6 +93,8 @@ class QuizFragment : Fragment(), OnStartDragListener {
                     didTapQuestion(adapter.questions[position])
                 }, onRemoved = { position ->
                     onRemoved(position)
+                }, onItemMoved = {
+                    quiz?.let { QuizDao().saveQuestionsOrder(it, adapter.questions) }
                 })
         rv_questions.adapter = adapter
         rv_questions.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -141,14 +140,14 @@ class QuizFragment : Fragment(), OnStartDragListener {
     private fun getQuestions() {
         quiz?.let { quiz->
             startLoading()
-            QuizzesDao().getQuestions(quiz.id) {
+            QuizDao().getQuestions(quiz.id) {
                 stopLoading()
                 if (it.size > 0) {
                     questions = it.toMutableList()
                     adapter.questions = it
                     adapter.notifyDataSetChanged()
                 } else
-                    showInfo(R.string.empty_list_quizzes)
+                    showInfo(R.string.empty_list_questions)
             }
         }
     }

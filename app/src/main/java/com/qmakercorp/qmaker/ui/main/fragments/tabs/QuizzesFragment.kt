@@ -28,9 +28,12 @@ import kotlinx.android.synthetic.main.qrcode_layout.*
 import java.io.File
 import java.io.FileOutputStream
 import androidx.core.content.FileProvider
+import com.google.android.material.snackbar.Snackbar
 import com.qmakercorp.qmaker.BuildConfig
 import com.qmakercorp.qmaker.adapters.QuizzesListAdapter
+import com.qmakercorp.qmaker.data.dao.QuizDao
 import com.qmakercorp.qmaker.data.model.Quiz
+import kotlinx.android.synthetic.main.new_quizz_dialog.*
 
 
 class QuizzesFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerHelper {
@@ -102,11 +105,31 @@ class QuizzesFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerH
     }
 
     private fun didTapNewQuiz(view: View) {
-        view.findNavController().navigate(R.id.action_tab2_to_newQuizFragment)
+        val dialog = Dialog(view.context)
+        with(dialog) {
+            setContentView(R.layout.new_question_dialog)
+            button_cancel.setOnClickListener { dialog.dismiss() }
+            button_add.setText(R.string.save)
+            button_add.setOnClickListener {
+                val id = QuizDao().generateId()
+                val name = et_question.text.toString()
+                val quiz = Quiz(id, name, id.substring(0,6).toUpperCase())
+                dialog.dismiss()
+                if (!name.isEmpty()) {
+                    QuizzesDao().saveQuiz(quiz) { success ->
+                        if (success) {
+                            Snackbar.make(view, R.string.quiz_saved, Snackbar.LENGTH_LONG).show()
+                            didTapQuiz(quiz)
+                        }
+                    }
+                }
+            }
+            show()
+        }
     }
 
     private fun initializeRecyclerView() {
-        context?.let {context ->
+        context?.let { context ->
             setupAutoHideFabOnScrollList()
             quizzesAdapter = QuizzesListAdapter(context, mutableListOf())
             rv_quizzes.adapter = quizzesAdapter
@@ -206,10 +229,14 @@ class QuizzesFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerH
     }
 
     private fun removeItemList(position: Int) {
-        val adapter = rv_quizzes.adapter as QuestionsListAdapter
         val quiz = quizzesAdapter.quizzes[position]
-        QuizzesDao().removeQuiz(quiz)
-        adapter.removeAt(position)
+        QuizzesDao().removeQuiz(quiz) { result ->
+            val message = if (result)
+                R.string.quiz_removed
+            else
+                R.string.quiz_remove_error
+            view?.let { Snackbar.make(it, message, Snackbar.LENGTH_LONG).show() }
+        }
     }
 
 }

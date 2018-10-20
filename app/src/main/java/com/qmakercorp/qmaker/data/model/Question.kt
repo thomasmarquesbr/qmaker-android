@@ -6,11 +6,21 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Question(val id: String,
                     val description: String,
-                    val order: Int): Parcelable {
+                    var order: Int): Parcelable {
 
     var answers = mutableListOf<String>()
     var trueAnswers = mutableListOf<Int>()
 
     constructor(): this("", "",-1)
+
+    fun toMap(): Map<String, Any> {
+        val map = mutableMapOf<String, Any>()
+        map["id"] = id
+        map["description"] = description
+        map["order"] = order
+        map["answers"] = answers
+        map["trueAnswers"] = trueAnswers
+        return map
+    }
 
 }

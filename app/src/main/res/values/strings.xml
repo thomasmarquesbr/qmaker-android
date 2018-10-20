@@ -44,8 +44,8 @@
     <string name="no">Não</string>
     <string name="undo">Desfazer</string>
     <string name="Delete">delete</string>
-    <string name="available">Disponível</string>
-    <string name="unavailable">Indisponível</string>
+    <string name="unpublish">Despublicar</string>
+    <string name="publish">Publicar</string>
     <string name="quiz_updated">Quiz atualizado</string>
     <string name="error_update_quiz">Erro ao atualizar quiz</string>
     <string name="close">Fechar</string>
@@ -65,4 +65,10 @@
     <string name="question_removed">Pergunta removida</string>
     <string name="question">Pergunta</string>
     <string name="type_a_question">Digite uma pergunta</string>
+    <string name="type_a_quiz">Digite o nome do quiz</string>
+    <string name="quiz_saved">Quiz salvo</string>
+    <string name="quiz">Quiz</string>
+    <string name="quiz_removed">Quiz removido</string>
+    <string name="quiz_remove_error">Erro ao remover quiz</string>
+    <string name="empty_list_questions">Nenhuma pergunta disponível</string>
 </resources>

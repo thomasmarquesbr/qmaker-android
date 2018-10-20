@@ -92,7 +92,7 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="2"
-                    android:text="@string/unavailable"
+                    android:text="@string/publish"
                     android:textColor="@color/white"
                     android:textSize="12sp"/>
 
