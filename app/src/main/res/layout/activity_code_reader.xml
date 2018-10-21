@@ -7,6 +7,14 @@
     android:background="@color/colorPrimary"
     tools:context=".ui.reader.CodeReaderActivity">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible" />
+
     <TextView
         android:id="@+id/qrcode_info"
         android:layout_width="wrap_content"
@@ -53,8 +61,9 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/code_placeholder"
+        android:text="LY4HJK"
         android:textColor="@android:color/white"
-        android:inputType="textPersonName"
+        android:inputType="textCapCharacters"
         android:textColorHint="@color/transparentWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"

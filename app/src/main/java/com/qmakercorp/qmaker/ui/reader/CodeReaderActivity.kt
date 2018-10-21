@@ -3,6 +3,7 @@ package com.qmakercorp.qmaker.ui.reader
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.SurfaceHolder
@@ -16,7 +17,10 @@ import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
 import com.qmakercorp.qmaker.R
 import com.qmakercorp.qmaker.components.Alert
-import com.wajahatkarim3.easyvalidation.core.view_ktx.nonEmpty
+import com.qmakercorp.qmaker.data.dao.StudentAnswersDao
+import com.qmakercorp.qmaker.ui.student.StudentLoginActivity
+import com.qmakercorp.qmaker.utils.PARCEL_QUIZ_ID
+import com.qmakercorp.qmaker.utils.PARCEL_USER_ID
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
 import kotlinx.android.synthetic.main.activity_code_reader.*
 
@@ -85,7 +89,24 @@ class CodeReaderActivity : Activity() {
     }
 
     private fun validateCode(code: String?) {
+        code?.let {
+            progress_bar.visibility = View.VISIBLE
+            StudentAnswersDao().validateQuizCode(it) { result, quizId, userId ->
+                progress_bar.visibility = View.INVISIBLE
+                if (result)
+                    callLoginStudent(quizId, userId)
+                else
+                    Alert(this, R.string.invalid_code).show()
+            }
+        }
+    }
 
+    private fun callLoginStudent(quizId: String?, userId: String?) {
+        val intent = Intent(this, StudentLoginActivity::class.java)
+        intent.putExtra(PARCEL_QUIZ_ID, quizId)
+        intent.putExtra(PARCEL_USER_ID, userId)
+        startActivity(intent)
+        finish()
     }
 
     private fun configCodeReader() {

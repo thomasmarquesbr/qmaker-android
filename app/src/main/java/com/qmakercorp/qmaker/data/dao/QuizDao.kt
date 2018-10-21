@@ -1,12 +1,14 @@
 package com.qmakercorp.qmaker.data.dao
 
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.qmakercorp.qmaker.data.model.Answer
 import com.qmakercorp.qmaker.data.model.Question
 import com.qmakercorp.qmaker.data.model.Quiz
+import com.qmakercorp.qmaker.utils.ORDER
+import com.qmakercorp.qmaker.utils.QUESTIONS
+import com.qmakercorp.qmaker.utils.QUIZZES
+import com.qmakercorp.qmaker.utils.USERS
 
 class QuizDao {
 
@@ -14,12 +16,12 @@ class QuizDao {
 
     fun getQuestions(idQuiz: String, completion: (MutableList<Question>) -> Unit) {
         FirebaseAuth.getInstance().currentUser?.let { user ->
-            database.collection("users")
+            database.collection(USERS)
                     .document(user.uid)
-                    .collection("quizzes")
+                    .collection(QUIZZES)
                     .document(idQuiz)
-                    .collection("questions")
-                    .orderBy("order")
+                    .collection(QUESTIONS)
+                    .orderBy(ORDER)
                     .get()
                     .addOnSuccessListener { querySnapshot ->
                         val list = mutableListOf<Question>()
@@ -45,11 +47,11 @@ class QuizDao {
                 question.trueAnswers.add(index)
         }
         FirebaseAuth.getInstance().currentUser?.let { user ->
-            database.collection("users")
+            database.collection(USERS)
                     .document(user.uid)
-                    .collection("quizzes")
+                    .collection(QUIZZES)
                     .document(quiz.id)
-                    .collection("questions")
+                    .collection(QUESTIONS)
                     .document(question.id)
                     .set(question)
                     .addOnSuccessListener { result(null) }
@@ -59,11 +61,11 @@ class QuizDao {
 
     fun removeQuestion(quiz: Quiz, question: Question, result: (String?) -> Unit) {
         FirebaseAuth.getInstance().currentUser?.let { user ->
-            database.collection("users")
+            database.collection(USERS)
                     .document(user.uid)
-                    .collection("quizzes")
+                    .collection(QUIZZES)
                     .document(quiz.id)
-                    .collection("questions")
+                    .collection(QUESTIONS)
                     .document(question.id)
                     .delete()
                     .addOnSuccessListener { result(null) }
@@ -72,20 +74,20 @@ class QuizDao {
     }
 
     fun generateId(): String {
-        return FirebaseFirestore.getInstance().collection("users").document().id
+        return FirebaseFirestore.getInstance().collection(USERS).document().id
     }
 
     fun saveQuestionsOrder(quiz: Quiz, questions: MutableList<Question>) {
         FirebaseAuth.getInstance().currentUser?.let { user ->
             val batch = database.batch()
             questions.forEachIndexed { index, question ->
-                val docRef = database.collection(("users"))
+                val docRef = database.collection(USERS)
                         .document(user.uid)
-                        .collection("quizzes")
+                        .collection(QUIZZES)
                         .document(quiz.id)
-                        .collection("questions")
+                        .collection(QUESTIONS)
                         .document(question.id)
-                batch.update(docRef, "order", index)
+                batch.update(docRef, ORDER, index)
             }
             batch.commit()
         }

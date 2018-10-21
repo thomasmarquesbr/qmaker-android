@@ -5,5 +5,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Student(val name: String,
-                   val age: Int): Parcelable {
+                   val classroom: String,
+                   var answers: List<Int>): Parcelable {
 }

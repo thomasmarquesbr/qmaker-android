@@ -1,10 +1,9 @@
 package com.qmakercorp.qmaker.data.dao
 
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.qmakercorp.qmaker.data.model.Question
 import com.qmakercorp.qmaker.data.model.Quiz
+import com.qmakercorp.qmaker.utils.*
 
 class QuizzesDao {
 
@@ -12,10 +11,10 @@ class QuizzesDao {
 
     fun getQuizzes(completion: (MutableList<Quiz>)->Unit) {
         FirebaseAuth.getInstance().currentUser?.let { user ->
-            database.collection("users")
+            database.collection(USERS)
                     .document(user.uid)
-                    .collection("quizzes")
-                    .orderBy("name")
+                    .collection(QUIZZES)
+                    .orderBy(NAME)
                     .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                         querySnapshot?.let {
                             val list = mutableListOf<Quiz>()
@@ -31,21 +30,22 @@ class QuizzesDao {
 
     fun publishQuiz(quiz: Quiz, completion: (Boolean)->Unit) {
         FirebaseAuth.getInstance().currentUser?.let {user ->
-            val quizRef = database.collection("users")
+            val quizRef = database.collection(USERS)
                     .document(user.uid)
-                    .collection("quizzes")
+                    .collection(QUIZZES)
                     .document(quiz.id)
-            val publicQuizzesRef = database.collection("publicQuizzes")
+            val publicQuizzesRef = database.collection(PUBLIC_QUIZZES)
                     .document(quiz.id)
             val batch = database.batch()
             if (quiz.code.isEmpty()) { // publish
                 val code = quiz.id.subSequence(0, 6).toString().toUpperCase()
-                batch.update(quizRef, "code", code)
-                val data = mapOf("code" to code)
+                batch.update(quizRef, CODE, code)
+                val data = mapOf(CODE to code)
                 batch.set(publicQuizzesRef, data)
-                batch.update(publicQuizzesRef, "code", code)
+                batch.update(publicQuizzesRef, CODE, code)
+                batch.update(publicQuizzesRef, USER, user.uid)
             } else { // unpublish
-                batch.update(quizRef, "code", "")
+                batch.update(quizRef, CODE, "")
                 batch.delete(publicQuizzesRef)
             }
             batch.commit()
@@ -56,9 +56,9 @@ class QuizzesDao {
 
     fun saveQuiz(quiz: Quiz, result: (Boolean) -> Unit) {
         FirebaseAuth.getInstance().currentUser?.let { user ->
-            database.collection("users")
+            database.collection(USERS)
                     .document(user.uid)
-                    .collection("quizzes")
+                    .collection(QUIZZES)
                     .document(quiz.id)
                     .set(quiz.toMap())
                     .addOnSuccessListener { result(true) }
@@ -68,10 +68,9 @@ class QuizzesDao {
 
     fun removeQuiz(quiz: Quiz, result: (Boolean) -> Unit) {
         FirebaseAuth.getInstance().currentUser?.let { user ->
-            Log.e("TESTE", quiz.id)
-            database.collection("users")
+            database.collection(USERS)
                     .document(user.uid)
-                    .collection("quizzes")
+                    .collection(QUIZZES)
                     .document(quiz.id)
                     .delete()
                     .addOnSuccessListener { result(true) }

@@ -71,4 +71,13 @@
     <string name="quiz_removed">Quiz removido</string>
     <string name="quiz_remove_error">Erro ao remover quiz</string>
     <string name="empty_list_questions">Nenhuma pergunta disponível</string>
+    <string name="invalid_code">Código inválido. Não existe quiz relacionado a esse código</string>
+    <string name="name_placeholder">Nome</string>
+    <string name="class_placeholder">Turma ou grupo</string>
+    <string name="start_quiz">Iniciar quiz</string>
+    <string name="message_leave_answers">Tem certeza que deseja sair? Todas as respostas serão canceladas.</string>
+    <string name="finish">Finalizar</string>
+    <string name="next_question">Próxima pergunta</string>
+    <string name="answer_not_checked_message">Nenhuma resposta foi marcada. Selecione uma resposta</string>
+    <string name="error_save_answers">Falha ao salvar questionário. Verifique sua conexão.</string>
 </resources>

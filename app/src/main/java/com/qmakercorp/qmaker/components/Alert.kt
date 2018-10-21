@@ -30,6 +30,8 @@ class Alert(val context: Context,
 
     constructor(context: Context, message: String) : this(context, null, message, R.style.dialog_light)
 
+    constructor(context: Context, message: Int) : this(context, null, context.getString(message), R.style.dialog_light)
+
     constructor(context: Context, message: String, styleResId: Int) : this(context, null, message, styleResId)
 
     fun show() {

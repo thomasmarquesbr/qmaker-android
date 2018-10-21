@@ -4,8 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -16,12 +18,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <provider
-            android:authorities="com.qmakercorp.qmaker.fileprovider"
             android:name="androidx.core.content.FileProvider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:authorities="com.qmakercorp.qmaker.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
@@ -42,10 +43,14 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.reader.CodeReaderActivity"></activity>
+        <activity android:name=".ui.reader.CodeReaderActivity" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a77ec1f97699b58668e38bc2d83ba73e2488feca" />
+
+        <activity android:name=".ui.student.StudentLoginActivity" />
+        <activity android:name=".ui.student.AnswerActivity"></activity>
     </application>
 
 </manifest>
