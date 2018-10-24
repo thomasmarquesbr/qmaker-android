@@ -7,4 +7,9 @@ import kotlinx.android.parcel.Parcelize
 data class Student(val name: String,
                    val classroom: String,
                    var answers: List<Int>): Parcelable {
+
+    var media = 0.0
+
+    constructor(): this("", "", listOf())
+
 }
