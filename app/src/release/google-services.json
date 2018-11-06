@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "738381114755",
+    "firebase_url": "https://qmaker-prod.firebaseio.com",
+    "project_id": "qmaker-prod",
+    "storage_bucket": "qmaker-prod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738381114755:android:187057d6d58f8791",
+        "android_client_info": {
+          "package_name": "com.qmakercorp.qmaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738381114755-rhat6e0c4if7pf02h6am0h7qej0q0gr4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoLpjdDXqPfLOQA3iJnOwkfoOVlf16cwg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

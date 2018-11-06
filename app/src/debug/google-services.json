@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "390839846909",
+    "firebase_url": "https://qmaker-180a0.firebaseio.com",
+    "project_id": "qmaker-180a0",
+    "storage_bucket": "qmaker-180a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390839846909:android:187057d6d58f8791",
+        "android_client_info": {
+          "package_name": "com.qmakercorp.qmaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390839846909-f15nir4288t61rlvpeg9q87vghs7avgr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW99lAiYCeNmmBJFZRd9ue9mOwpjWFDo4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390839846909:android:23dc15ebb130bd4f",
+        "android_client_info": {
+          "package_name": "com.qmakercorp.qmaker.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390839846909-f15nir4288t61rlvpeg9q87vghs7avgr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW99lAiYCeNmmBJFZRd9ue9mOwpjWFDo4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
