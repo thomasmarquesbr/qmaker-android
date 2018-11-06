@@ -1,17 +1,15 @@
 package com.qmakercorp.qmaker.ui.main.fragments.tabs
 
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.qmakercorp.qmaker.R
 import com.qmakercorp.qmaker.adapters.QuizzesResultAdapter
 import com.qmakercorp.qmaker.data.dao.QuizzesResultDao
@@ -49,6 +47,10 @@ class HomeFragment : Fragment() {
     /** PRIVATE **/
 
     private fun initializeViews() {
+        (activity as AppCompatActivity).supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(false)
+            it.title = getString(R.string.dashboard_resume)
+        }
         context?.let { context ->
             adapter = QuizzesResultAdapter(context, mutableListOf()) { position ->
                 callStudentsFragment(adapter.quizResultList[position])
@@ -59,9 +61,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun callStudentsFragment(quizResult: QuizResult) {
-        val bundle = Bundle()
-        bundle.putParcelable("quiz_result", quizResult)
-//        view?.findNavController()?.navigate(R.id.action_tab2_to_quizFragment, bundle)
+        if (quizResult.students.size > 0) {
+            val bundle = Bundle()
+            bundle.putParcelable("quiz_result", quizResult)
+            view?.findNavController()?.navigate(R.id.action_tab1_to_studentsFragment, bundle)
+        }
     }
 
     private fun showInfo(resIdMessage: Int) {
@@ -79,7 +83,7 @@ class HomeFragment : Fragment() {
 
     private fun stopLoading() {
         progress_bar?.let { it.visibility = View.GONE }
-        rv_results.visibility = View.VISIBLE
+        rv_results?.let { it.visibility = View.VISIBLE }
     }
 
 }

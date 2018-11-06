@@ -32,7 +32,7 @@ data class QuizResult(val id: String,
             }
             val media = calculatePercent(answerHits, trueAnswers.size)
             if (media > 60) countStudentMedia++
-            students[index].media
+            students[index].media = media
         }
         this.resultValue = calculatePercent(countStudentMedia, students.size)
     }

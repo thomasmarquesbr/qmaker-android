@@ -34,7 +34,7 @@
     <string name="caution">Atenção</string>
     <string name="code_empty_message">Você deve ler um código QRCode ou digitar um código manualmente.</string>
     <string name="new_quiz">Novo Quiz</string>
-    <string name="my_quizzes">Meus Quizzes</string>
+    <string name="my_quizzes">Meus quizzes</string>
     <string name="summary">Resumo</string>
     <string name="settings">Configurações</string>
     <string name="empty_list_quizzes">Nenhum quiz disponível</string>
@@ -82,4 +82,10 @@
     <string name="error_save_answers">Falha ao salvar questionário. Verifique sua conexão.</string>
     <string name="answered">respondidos</string>
     <string name="below_media">Acima da média</string>
+    <string name="dashboard_resume">Resumo de resultados</string>
+    <string name="students">Alunos</string>
+    <string name="hits">de acerto</string>
+    <string name="logout">Sair</string>
+    <string name="change_password">Alterar senha</string>
+    <string name="message_logout">Tem certeza que deseja sair?</string>
 </resources>

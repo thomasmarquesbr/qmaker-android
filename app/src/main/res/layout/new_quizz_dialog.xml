@@ -20,7 +20,6 @@
         android:layout_gravity="center_vertical"
         android:layout_margin="16dp"
         android:ems="10"
-        android:textColor="@color/colorPrimary"
         android:hint="@string/question"
         android:inputType="text|textCapSentences|textMultiLine"
         android:scrollbars="vertical" />

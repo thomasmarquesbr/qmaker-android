@@ -9,7 +9,15 @@
         android:id="@+id/tab1"
         android:name="com.qmakercorp.qmaker.ui.main.fragments.tabs.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_tab1_to_studentsFragment"
+            app:destination="@id/studentsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/tab2"
@@ -48,5 +56,10 @@
         android:name="com.qmakercorp.qmaker.ui.main.fragments.quizzes.QuestionFragment"
         android:label="fragment_question"
         tools:layout="@layout/fragment_question" />
+    <fragment
+        android:id="@+id/studentsFragment"
+        android:name="com.qmakercorp.qmaker.ui.main.fragments.students.StudentsFragment"
+        android:label="fragment_students"
+        tools:layout="@layout/fragment_students" />
 
 </navigation>

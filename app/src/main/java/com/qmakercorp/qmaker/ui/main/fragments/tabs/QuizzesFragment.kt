@@ -91,8 +91,8 @@ class QuizzesFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerH
     }
 
     private fun stopLoading() {
-        progress_bar.visibility = View.GONE
-        rv_quizzes.visibility = View.VISIBLE
+        progress_bar?.let { it.visibility = View.GONE }
+        rv_quizzes?.let { it.visibility = View.VISIBLE }
     }
 
     private fun initializeViews() {

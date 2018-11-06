@@ -4,7 +4,6 @@ package com.qmakercorp.qmaker.ui.main.fragments.quizzes
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -61,11 +60,11 @@ class QuizFragment : Fragment(), OnStartDragListener {
         (activity as AppCompatActivity).supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setHomeButtonEnabled(true)
-            it.title = getString(R.string.new_quiz)
+            it.title = quiz?.name
         }
         setupAutoHideFabOnScrollList()
         context?.let { context ->
-            fab.setOnClickListener { didTapNewAnswer(context) }
+            fab.setOnClickListener { didTapNewQuestion(context) }
             initializeRecyclerView(context)
         }
     }
@@ -161,7 +160,7 @@ class QuizFragment : Fragment(), OnStartDragListener {
         }
     }
 
-    private fun didTapNewAnswer(context: Context) {
+    private fun didTapNewQuestion(context: Context) {
         val dialog = Dialog(context)
         with(dialog) {
             setContentView(R.layout.new_question_dialog)

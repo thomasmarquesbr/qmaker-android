@@ -8,7 +8,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/type_a_quiz"
+        android:id="@+id/title"
+        android:text="@string/type_a_question"
         android:textSize="24sp"
         android:textColor="@color/colorPrimaryDark"
         android:layout_margin="16dp"/>
@@ -20,8 +21,7 @@
         android:layout_gravity="center_vertical"
         android:layout_margin="16dp"
         android:ems="10"
-        android:textColor="@color/colorPrimary"
-        android:hint="@string/quiz"
+        android:hint="@string/question"
         android:inputType="text|textCapSentences|textMultiLine"
         android:scrollbars="vertical" />
 

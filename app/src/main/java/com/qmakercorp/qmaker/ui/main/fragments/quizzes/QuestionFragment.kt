@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -79,6 +80,11 @@ class QuestionFragment :
     }
 
     private fun initializeViews() {
+        (activity as AppCompatActivity).supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.setHomeButtonEnabled(true)
+            it.title = "${quiz.name}:${question.description}"
+        }
         context?.let { context ->
             val answers = initializeAnswers()
             fab.setOnClickListener { didTapNewAnswer(context) }

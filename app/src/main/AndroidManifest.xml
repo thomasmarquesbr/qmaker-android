@@ -50,7 +50,8 @@
             android:value="a77ec1f97699b58668e38bc2d83ba73e2488feca" />
 
         <activity android:name=".ui.student.StudentLoginActivity" />
-        <activity android:name=".ui.student.AnswerActivity"></activity>
+        <activity android:name=".ui.student.AnswerActivity" />
+        <activity android:name=".ui.main.fragments.students.StudentsActivity"></activity>
     </application>
 
 </manifest>
