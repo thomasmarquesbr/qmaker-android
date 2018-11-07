@@ -88,4 +88,11 @@
     <string name="logout">Sair</string>
     <string name="change_password">Alterar senha</string>
     <string name="message_logout">Tem certeza que deseja sair?</string>
+    <string name="type_new_password">Digite a nova senha</string>
+    <string name="error_required_field">Campo obrigatório</string>
+    <string name="message_password_changed">Password alterado com sucesso</string>
+    <string name="be_plus">Seja Plus</string>
+    <string name="password">Nova senha</string>
+    <string name="password_repeat">Repetir senha nova</string>
+    <string name="current_password">Senha atual</string>
 </resources>

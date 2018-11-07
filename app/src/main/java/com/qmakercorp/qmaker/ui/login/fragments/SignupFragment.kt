@@ -16,6 +16,7 @@ import com.qmakercorp.qmaker.data.model.Student
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.greaterThanList
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.nonEmptyList
 import com.wajahatkarim3.easyvalidation.core.view_ktx.noSpecialCharacters
+import com.wajahatkarim3.easyvalidation.core.view_ktx.nonEmpty
 import com.wajahatkarim3.easyvalidation.core.view_ktx.textEqualTo
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validEmail
 import kotlinx.android.synthetic.main.fragment_signup.*
@@ -69,8 +70,8 @@ class SignupFragment : Fragment() {
 
     private fun validateFields(): Boolean {
         var isValid = true
-        et_name.noSpecialCharacters {
-            et_name.error = getString(R.string.error_name)
+        et_name.nonEmpty {
+            et_name.error = getString(R.string.error_required_field)
             isValid = false
         }
         et_email.validEmail {
