@@ -3,35 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_centerInParent="false"
+    android:layout_centerHorizontal="false"
+    android:layout_centerVertical="false"
     tools:context=".ui.main.fragments.tabs.HomeFragment">
 
     <TextView
         android:id="@+id/tv_info"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textSize="22sp"
-        android:layout_alignEnd="@+id/progress_bar"
-        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:visibility="gone"
-        />
+        android:layout_centerInParent="true"
+        android:textSize="22sp"
+        android:visibility="invisible" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:indeterminate="true"
-        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_alignParentTop="true"
-        android:visibility="gone"
-        />
+        android:indeterminate="true"
+        android:visibility="invisible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_results"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:visibility="invisible" />
 
 </RelativeLayout>

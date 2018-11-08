@@ -1,5 +1,6 @@
 package com.qmakercorp.qmaker.data.dao
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.qmakercorp.qmaker.data.model.Question
@@ -73,7 +74,9 @@ class QuizzesResultDao {
 
                                 }
                             }
-                        }
+                            if (snap.documents.size == 0)
+                                completion(mutableListOf())
+                        } ?: run { completion(mutableListOf()) }
                     }
         }
     }

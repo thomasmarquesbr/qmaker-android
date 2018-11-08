@@ -78,7 +78,7 @@ class QuizzesFragment : Fragment(), RecyclerTouchListener.RecyclerTouchListenerH
     /** PRIVATE **/
 
     private fun showInfo(resIdMessage: Int) {
-        progress_bar.visibility = View.GONE
+        progress_bar?.let{ it.visibility = View.GONE }
         rv_quizzes.visibility = View.GONE
         tv_info.setText(resIdMessage)
         tv_info.visibility = View.VISIBLE

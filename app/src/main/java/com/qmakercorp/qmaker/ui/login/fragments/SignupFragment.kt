@@ -2,10 +2,12 @@ package com.qmakercorp.qmaker.ui.login.fragments
 
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
@@ -14,6 +16,7 @@ import com.qmakercorp.qmaker.R
 import com.qmakercorp.qmaker.components.Alert
 import com.qmakercorp.qmaker.data.model.Student
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.greaterThanList
+import com.wajahatkarim3.easyvalidation.core.collection_ktx.minLengthList
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.nonEmptyList
 import com.wajahatkarim3.easyvalidation.core.view_ktx.noSpecialCharacters
 import com.wajahatkarim3.easyvalidation.core.view_ktx.nonEmpty
@@ -43,7 +46,10 @@ class SignupFragment : Fragment() {
             supportActionBar?.setShowHideAnimationEnabled(false)
             supportActionBar?.show()
         }
-        button_signup.setOnClickListener { didTapSignup() }
+        button_signup.setOnClickListener {
+            hideKeyboardFrom(it)
+            didTapSignup()
+        }
     }
 
     private fun didTapSignup() {
@@ -86,11 +92,18 @@ class SignupFragment : Fragment() {
             view.error = getString(R.string.error_not_empty)
             isValid = false
         }
-        greaterThanList(5, et_password, et_password_repeat) { view, _ ->
+        minLengthList(6, et_password, et_password_repeat) { view, _ ->
             view.error = getString(R.string.error_password_short)
             isValid = false
         }
         return isValid
+    }
+
+    private fun hideKeyboardFrom(view: View) {
+        activity?.let {
+            val imm = it.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
 }

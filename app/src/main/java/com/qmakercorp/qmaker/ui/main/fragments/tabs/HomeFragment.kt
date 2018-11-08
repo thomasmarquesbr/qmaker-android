@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
                 adapter.quizResultList = it
                 adapter.notifyDataSetChanged()
             } else
-                showInfo(R.string.empty_list_quizzes)
+                showInfo(R.string.empty_list_result_quizzes)
         }
     }
 
@@ -69,20 +69,20 @@ class HomeFragment : Fragment() {
     }
 
     private fun showInfo(resIdMessage: Int) {
-        progress_bar.visibility = View.GONE
-        rv_results.visibility = View.GONE
+        progress_bar?.let { it.visibility = View.INVISIBLE }
+        rv_results?.let { it .visibility = View.INVISIBLE }
         tv_info.setText(resIdMessage)
         tv_info.visibility = View.VISIBLE
     }
 
     private fun startLoading() {
         progress_bar.visibility = View.VISIBLE
-        rv_results.visibility = View.GONE
-        tv_info.visibility = View.GONE
+        rv_results.visibility = View.INVISIBLE
+        tv_info.visibility = View.INVISIBLE
     }
 
     private fun stopLoading() {
-        progress_bar?.let { it.visibility = View.GONE }
+        progress_bar?.let { it.visibility = View.INVISIBLE }
         rv_results?.let { it.visibility = View.VISIBLE }
     }
 
