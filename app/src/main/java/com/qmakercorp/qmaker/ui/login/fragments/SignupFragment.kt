@@ -14,7 +14,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.qmakercorp.qmaker.R
 import com.qmakercorp.qmaker.components.Alert
+import com.qmakercorp.qmaker.data.dao.UserDao
 import com.qmakercorp.qmaker.data.model.Student
+import com.qmakercorp.qmaker.utils.Plan
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.greaterThanList
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.minLengthList
 import com.wajahatkarim3.easyvalidation.core.collection_ktx.nonEmptyList

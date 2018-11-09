@@ -13,9 +13,11 @@ const val QUIZZES = "quizzes"
 const val QUESTIONS = "questions"
 const val CODE =  "code"
 const val NAME = "name"
+const val EMAIL = "email"
 const val ORDER = "order"
 const val PUBLIC_QUIZZES = "publicQuizzes"
 const val STUDENTS = "students"
+const val PLAN = "plan"
 
 // Parcel keys
 

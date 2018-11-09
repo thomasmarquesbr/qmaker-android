@@ -96,4 +96,8 @@
     <string name="password_repeat">Repetir senha nova</string>
     <string name="current_password">Senha atual</string>
     <string name="empty_list_result_quizzes">Nenhum resultado disponível</string>
+    <string name="be_premium">Seja Premium</string>
+    <string name="change_plan">Alterar plano</string>
+    <string name="message_change_to_basic_plan">Tem certeza que deseja cancelar seu plano?</string>
+    <string name="payment_method">Método de pagamento</string>
 </resources>

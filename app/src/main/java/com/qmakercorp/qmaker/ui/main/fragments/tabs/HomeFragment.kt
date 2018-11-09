@@ -71,8 +71,10 @@ class HomeFragment : Fragment() {
     private fun showInfo(resIdMessage: Int) {
         progress_bar?.let { it.visibility = View.INVISIBLE }
         rv_results?.let { it .visibility = View.INVISIBLE }
-        tv_info.setText(resIdMessage)
-        tv_info.visibility = View.VISIBLE
+        tv_info?.let {
+            it.setText(resIdMessage)
+            it.visibility = View.VISIBLE
+        }
     }
 
     private fun startLoading() {

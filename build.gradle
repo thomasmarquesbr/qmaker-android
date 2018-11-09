@@ -5,6 +5,8 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
+        mavenLocal()
         maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
@@ -23,6 +25,10 @@ allprojects {
         jcenter()
         maven { url "https://jitpack.io" }
         maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://jitpack.io" }
+        maven { url "https://github.com/pagseguro/pagseguro-android-sdk-checkout-in-app/raw/master/repositorio" }
+        mavenCentral()
+        mavenLocal()
     }
 }
 

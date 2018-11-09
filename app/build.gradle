@@ -76,7 +76,8 @@ dependencies {
     implementation 'com.nikhilpanju.recyclerviewenhanced:recyclerviewenhanced:1.1.0'
     //ToggleSwitch
     implementation 'us.belka:androidtoggleswitch:1.2.2'
-
+    //PagSeguro
+    implementation 'br.com.uol.pslibs:checkout-in-app:0.0.6'
 
 }
 
